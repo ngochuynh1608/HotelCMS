@@ -360,6 +360,22 @@ section {
   padding: 5.2rem 0;
 }
 
+.spinner {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 3px solid rgba(154, 118, 45, 0.25);
+  border-top-color: #9a762d;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .grid-2 {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;

@@ -5,13 +5,13 @@ import { useSiteContent } from "./site-content/useSiteContent.js";
 import { getRoomHref } from "./utils/roomUtils.js";
 
 function App() {
-  const { content } = useSiteContent();
+  const { content, loading } = useSiteContent();
   const [lang, setLang] = useState("vi");
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileNav, setMobileNav] = useState(false);
   const location = useLocation();
   const stars =
-    typeof content.brandSeo?.sectionStars === "number" && content.brandSeo.sectionStars > 0
+    typeof content?.brandSeo?.sectionStars === "number" && content.brandSeo.sectionStars > 0
       ? "★ ".repeat(content.brandSeo.sectionStars).trim()
       : "";
 
@@ -37,6 +37,7 @@ function App() {
 
   // SEO: title, description, favicon
   useEffect(() => {
+    if (!content) return;
     const seo = content.brandSeo || {};
     const baseTitle = seo.title || content.brandName || "Bliss Hotel";
     document.title = baseTitle;
@@ -61,7 +62,7 @@ function App() {
       }
       link.setAttribute("href", seo.icon);
     }
-  }, [content.brandSeo, content.brandName, location.pathname]);
+  }, [content, location.pathname]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -77,8 +78,8 @@ function App() {
   }, [menuOpen]);
 
   const closeMenu = () => setMenuOpen(false);
-  const menuItemsRaw = content.menu?.items || [];
-  const roomItems = content.rooms?.items || [];
+  const menuItemsRaw = content?.menu?.items || [];
+  const roomItems = content?.rooms?.items || [];
   const menuItems = menuItemsRaw.map((item) => {
     if (item.id !== "rooms") return item;
     return {
@@ -92,6 +93,17 @@ function App() {
       })),
     };
   });
+
+  if (loading || !content) {
+    return (
+      <main className="page" style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div style={{ textAlign: "center" }}>
+          <div className="spinner" aria-hidden="true" />
+          <p style={{ marginTop: "0.75rem", fontSize: "0.9rem", color: "#5c5240" }}>Đang tải nội dung...</p>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <>

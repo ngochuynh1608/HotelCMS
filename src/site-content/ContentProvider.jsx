@@ -19,7 +19,7 @@ async function fetchSiteContent() {
 }
 
 export function ContentProvider({ children }) {
-  const [content, setContent] = useState(DEFAULT_SITE_CONTENT);
+  const [content, setContent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 

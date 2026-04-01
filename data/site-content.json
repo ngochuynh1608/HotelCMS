@@ -1,6 +1,6 @@
 {
-  "brandName": "Bliss Hotel",
-  "footer": "Bliss Hotel - Luxury Stay Experience",
+  "brandName": "Grand Sunrise",
+  "footer": "Grand Sunrise Palace - Luxury Stay Experience",
   "menu": {
     "items": [
       {
@@ -74,8 +74,8 @@
       {
         "id": "booking",
         "type": "hash",
-        "href": "/#lien-he",
-        "labelVi": "Dat Ngay",
+        "href": "/reservation",
+        "labelVi": "Đặt ngay",
         "labelEn": "Booking Now",
         "navClass": "menu-booking"
       }
@@ -86,23 +86,18 @@
     "slides": [
       {
         "type": "image",
-        "src": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=2000&q=80",
+        "src": "/uploads/1775008759748-azrzfbel.jpg",
         "alt": "Bliss Hotel facade"
       },
       {
         "type": "image",
-        "src": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=2000&q=80",
+        "src": "/uploads/1775008716028-07lbrnz9.jpg",
         "alt": "Lobby"
-      },
-      {
-        "type": "image",
-        "src": "https://images.unsplash.com/photo-1576675784201-0e142b423952?auto=format&fit=crop&w=2000&q=80",
-        "alt": "Resort pool"
       }
     ],
     "eyebrow": {
-      "vi": "Bliss Hotel Đà Nẵng ",
-      "en": "Bliss Hotel Đà Nẵng "
+      "vi": "Welcome to Grand Sunrise Palace",
+      "en": "Welcome to Grand Sunrise Palace"
     },
     "titleLine1": {
       "vi": "A New Signature",
@@ -113,16 +108,16 @@
       "en": "Of Timeless Luxury"
     },
     "subtitle": {
-      "vi": "Bliss Hotel mang den ky nghi 5 sao voi kien truc tinh te, khong gian nghi duong an yen va dich vu ca nhan hoa cho tung khoanh khac cua ban.",
+      "vi": "Grand Sunrise Palace Hội An là khách sạn 5 sao theo phong cách Đông Dương sang trọng, tọa lạc tại số 320 Cửa Đại, phường Cẩm Châu, cách phố cổ Hội An khoảng ~2 km (khoảng 5 phút lái xe) và bãi biển Cửa Đại khoảng ~3 km (khoảng 7 phút)",
       "en": "Bliss Hotel offers a five-star stay with refined architecture, serene spaces, and personalized service for every moment."
     },
     "primaryCta": {
-      "vi": "Dat phong ngay",
+      "vi": "Đặt phòng ngay",
       "en": "Book now",
       "href": "/#lien-he"
     },
     "secondaryCta": {
-      "vi": "Kham pha hang phong",
+      "vi": "Khám phá hạng phòng",
       "en": "Explore rooms",
       "href": "/#phong"
     }
@@ -134,99 +129,158 @@
     },
     "paragraphs": [
       {
-        "vi": "Bliss Hotel la khach san luxury contemporary noi ket hop kien truc hien dai, chat lieu thu cong va dich vu chu dao. Moi khong gian duoc thiet ke de mang lai cam giac tinh te va rieng tu.",
+        "vi": "Grand Sunrise Palace Hội An là khách sạn 5 sao đẳng cấp, phong cách Đông Dương tinh tế, chỉ cách phố cổ và bãi biển chỉ vài phút đi xe. Với 85 phòng nghỉ sang trọng, hồ bơi và spa hiện đại, nhà hàng Indochine ấn tượng và dịch vụ chuyên nghiệp được đánh giá xuất sắc (9.7–9.8/10), đây là lựa chọn lý tưởng cho du khách nghỉ dưỡng hoặc kết hợp công tác tại Hội An.",
         "en": "Bliss Hotel is a contemporary luxury hotel blending modern architecture, artisan materials, and attentive service. Every space is designed to feel refined and private."
       },
       {
-        "vi": "Tu dich vu butler ca nhan hoa, am thuc fine dining den wellness tri lieu chuyen sau, chung toi xay dung mot hanh trinh nghi duong tron ven cho doanh nhan, cap doi va gia dinh.",
-        "en": "From personalized butler service and fine dining to in-depth wellness, we craft a complete stay for business guests, couples, and families."
+        "vi": "",
+        "en": ""
       }
     ],
     "sliderImages": [
       {
-        "src": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80",
-        "alt": "Reception"
-      },
-      {
-        "src": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1200&q=80",
-        "alt": "Suite"
-      },
-      {
-        "src": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1200&q=80",
-        "alt": "Resort"
+        "src": "/uploads/1775008606327-0mw3cdzk.jpg",
+        "alt": ""
       }
     ]
   },
   "rooms": {
     "sectionTitle": {
-      "vi": "Danh Sach Phong",
+      "vi": "Danh sách phòng",
       "en": "Room Collection"
     },
     "sectionSubtitle": {
-      "vi": "Khong gian duoc cham chu den tung chat lieu, mang tinh than thanh lich va rieng tu tuyet doi.",
+      "vi": "Các phòng nghỉ và suite phong cách Indochine Khách sạn mang đến không gian lưu trú đặc trưng với phong cách Indochine thanh lịch. Nội thất gỗ sang trọng, họa tiết trang trí tinh xảo cùng gam màu trung tính tạo nên một không gian ấm cúng. Mỗi không gian đều được trang bị nội thất cao cấp, cửa sổ rộng mở và ban công đón ánh sáng tự nhiên, cùng tầm nhìn tuyệt đẹp ra thành phố hoặc cảnh quan xung quanh.",
       "en": "Spaces crafted down to every detail—elegant, private, and refined."
     },
     "items": [
       {
-        "name": "Deluxe City View",
-        "desc": "38m2, giuong king-size, bon tam marble va ban cong rieng huong thanh pho.",
+        "name": "Premier Twin Room Balcony",
+        "desc": "",
         "price": {
-          "vi": "Từ 3.200.000 VND / đêm",
+          "vi": "Từ 1.600.000 VND / đêm",
           "en": "From $150 / night"
         },
-        "image": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80",
+        "image": "/uploads/1775055333481-olw297yk.jpg",
         "roomAmenities": [
-          "tv_minibar"
+          "tv_minibar",
+          "Shower",
+          "Sauna",
+          "Bathtub",
+          "Balcony",
+          "wifi",
+          "balcony",
+          "marble_bath",
+          "Air conditioning"
         ],
-        "images": [
-          {
-            "src": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80",
-            "alt": ""
-          },
-          {
-            "src": "/uploads/1774909725021-8cni6kvf.jpg",
-            "alt": ""
-          },
-          {
-            "src": "/uploads/1774909725030-62ejjzov.jpg",
-            "alt": ""
-          },
-          {
-            "src": "/uploads/1774909725040-ibp41y81.jpg",
-            "alt": ""
-          },
-          {
-            "src": "/uploads/1774909725048-sjyabyd9.jpg",
-            "alt": ""
-          }
-        ],
-        "area": "38",
+        "images": [],
+        "area": "37",
         "beds": "2"
       },
       {
-        "name": "Executive Suite",
-        "desc": "58m2, phong khach rieng, mini bar cao cap va dich vu butler theo yeu cau.",
-        "price": "Tu 5.800.000 VND/dem",
-        "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80",
-        "roomAmenities": []
-      },
-      {
-        "name": "Presidential Suite",
-        "desc": "110m2, khong gian tiep khach va phong an rieng, tam nhin skyline toan canh.",
-        "price": "Tu 12.500.000 VND/dem",
-        "image": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=1600&q=80",
+        "name": "Deluxe Twin Room Balcony",
+        "desc": "",
+        "price": {
+          "vi": "Tu 1.800.000 VND / đêm"
+        },
+        "image": "/uploads/1775055359111-j5si5e5l.jpg",
         "roomAmenities": [
-          "View Đồng Lúa"
+          "wifi",
+          "balcony",
+          "marble_bath",
+          "tv_minibar",
+          "Air conditioning",
+          "Balcony",
+          "Bathtub",
+          "Sauna",
+          "Shower"
         ]
       },
       {
-        "name": "Twin Room",
-        "desc": "36m2, 2 giuong don, khu lam viec rieng va tam nhin thanh pho thoang mo.",
-        "price": "Tu 3.600.000 VND/dem",
-        "image": "https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1600&q=80",
+        "name": "Deluxe Double Room Balcony",
+        "desc": "",
+        "price": {
+          "vi": "Từ 2.400.000 / đêm"
+        },
+        "image": "/uploads/1775055269489-ndfmuksw.jpg",
         "roomAmenities": [
-          "View Đồng Lúa"
-        ]
+          "wifi",
+          "balcony",
+          "marble_bath",
+          "tv_minibar",
+          "Air conditioning",
+          "Balcony",
+          "Bathtub",
+          "Sauna",
+          "Shower"
+        ],
+        "area": "35",
+        "beds": "1",
+        "images": []
+      },
+      {
+        "name": "Premier King Room Balcony",
+        "desc": "",
+        "price": {
+          "vi": "Từ 2.400.000 / đêm"
+        },
+        "image": "/uploads/1775055494019-7wqh797e.jpg",
+        "roomAmenities": [
+          "wifi",
+          "balcony",
+          "marble_bath",
+          "tv_minibar",
+          "Air conditioning",
+          "Balcony",
+          "Sauna",
+          "Bathtub",
+          "Shower"
+        ],
+        "area": "37"
+      },
+      {
+        "name": "Signature Suite Balcony",
+        "desc": "40m2 , 1 King bed",
+        "price": {
+          "vi": "Từ 2.700.000 / đêm"
+        },
+        "image": "/uploads/1775055566806-vczm6gnx.jpg",
+        "images": [],
+        "roomAmenities": [
+          "wifi",
+          "balcony",
+          "marble_bath",
+          "tv_minibar",
+          "Air conditioning",
+          "Balcony",
+          "Bathtub",
+          "Sauna",
+          "Shower"
+        ],
+        "area": "40",
+        "beds": "1"
+      },
+      {
+        "name": "Presidential Suite Balcony",
+        "desc": "",
+        "price": {
+          "vi": "Từ 5.000.000đ / đêm"
+        },
+        "image": "/uploads/1775055757795-ovxit9kr.jpg",
+        "images": [],
+        "roomAmenities": [
+          "wifi",
+          "balcony",
+          "marble_bath",
+          "tv_minibar",
+          "Air conditioning",
+          "Balcony",
+          "Sauna",
+          "Bathtub",
+          "Shower"
+        ],
+        "area": "50",
+        "beds": ""
       }
     ],
     "roomAmenityLibrary": [],
@@ -236,42 +290,48 @@
   },
   "amenities": {
     "sectionTitle": {
-      "vi": "Tien Ich Noi Bat",
+      "vi": "Tiện Ích Nổi Bật",
       "en": "Signature Amenities"
     },
     "sectionSubtitle": {
-      "vi": "He sinh thai dich vu danh cho nghi duong, cong tac va trai nghiem am thuc thuong hang.",
+      "vi": "\nHệ sinh thái dịch vụ danh cho nghỉ dưỡng, công tác và trải nghiệm ẩm thực thượng hạng.",
       "en": "A full ecosystem for leisure, work, and elevated dining."
     },
     "items": [
       {
         "title": {
-          "vi": "Signature Spa",
+          "vi": "Warmest Greeting from The Breathe Spa & Beauty",
           "en": "Signature Spa"
         },
         "desc": {
-          "vi": "Lieu trinh tri lieu chuyen sau voi khong gian rieng tu va doi ngu therapist chuan quoc te.",
+          "vi": "We invite you to relax and pamper yourself with one of our revitalising spa experience. Let us calm your mind and help get you away from your busy everyday life. You deserve to enjoy our experience. The Breathe Spa & Beauty is a professional team, trained at prestigious schools, with the ongoing promotions, we are proudly brings a comprehensive beauty care to all of you. The program will offer special prices for customers who have different needs. Spa carries one specific characteristics in order to create conditions for all customers to join The Breathe Spa & Beauty. The Breathe Spa & Beauty provides services to promote health, relaxation, and beauty including : Body Treatment ,Facial Care ,Express Treatment, Body Wrap ,Body Exfoliate ,Special Package,Manicure And Pedicure ,Hair Wash ,Eyelash Extension, Eyelash Perm. The Breathe Spa & Beauty offers a luxurious retreat, elegantly designed single, double and triple treatment rooms, Jacuzzi bath , sauna and steam and an extensive range of wellness services. Its comprehensive therapies, combined with natural products.",
           "en": "Lieu trinh tri lieu chuyen sau voi khong gian rieng tu va doi ngu therapist chuan quoc te."
         },
-        "image": "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1000&q=80",
+        "image": "/uploads/1775008380781-2xiwo663.jpg",
         "alt": "Spa"
       },
       {
         "title": {
-          "vi": "Infinity Pool",
+          "vi": "Cowboy Bar",
           "en": "Infinity Pool"
         },
-        "desc": "Ho boi tang thuong ket hop pool bar, tam nhin mo va khong gian thu gian ca ngay.",
-        "image": "https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?auto=format&fit=crop&w=1000&q=80",
+        "desc": {
+          "vi": "- Vị trí: Tầng 7 - Giờ hoạt động: 10:00 ~ 22:00 - Ẩm thực: Các món snacks / Draft Beer / Cocktail - Khác: - Hồ bơi: Độ sâu từ 1m5 - Chươngtrình ưu đãi: - 1. Happy Hour: 12:00 –16:00 Mua 1 tặng 1 (chỉ áp dụng - Cocktail & Mocktail) - 2. Lucky Wheel: 10:00 – 12:00 Trò chơivòng quay may - mắnnhậnưuđãi - 3. Beer O’clock: All Day Mua 1 tặng 1 Beer Draft - 4. TặngSnack miễnphívớibấtkỳorder - 5. Floating Tray: 720.000 VND / tray",
+          "en": ""
+        },
+        "image": "/uploads/1775008377213-q6tmsyr5.jpg",
         "alt": "Pool"
       },
       {
         "title": {
-          "vi": "Fine Dining",
+          "vi": "SunFlower Restaurant",
           "en": "Fine Dining"
         },
-        "desc": "Am thuc au - a duoc phuc vu trong khong gian sang trong va bo suu tap ruou vang chon loc.",
-        "image": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=80",
+        "desc": {
+          "vi": "Tọa lạc tại tầng 1 khách sạn, nhà hàng mang đến không gian ấm cúng và tinh tế, là nơi lý tưởng để bắt đầu ngày mới với bữa sáng buffet phong phú hay thưởng thức các món ăn à la carte được chế biến tinh tế suốt cả ngày. Với các chương trình ưu đãi đặc biệt mỗi ngày như Happy Hour, Afternoon Tea, Wine Tasting và biểu diễn nhạc sống buổi tối, nhà hàng không chỉ là điểm dừng chân cho ẩm thực mà còn là trải nghiệm văn hoá và cảm xúc khó quên dành cho mọi thực khách.",
+          "en": ""
+        },
+        "image": "/uploads/1775008402890-3xjnyxqd.png",
         "alt": "Dining"
       },
       {
@@ -290,7 +350,7 @@
   },
   "gallery": {
     "sectionTitle": {
-      "vi": "Hinh Anh Khach San",
+      "vi": "Hình ảnh khách sạn",
       "en": "Hotel Gallery"
     },
     "sectionSubtitle": {
@@ -299,36 +359,32 @@
     },
     "images": [
       {
-        "src": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=80",
-        "alt": "Lobby"
+        "src": "/uploads/1775057357191-e0y8751v.jpg",
+        "alt": ""
       },
       {
-        "src": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1000&q=80",
-        "alt": "Restaurant"
+        "src": "/uploads/1775057360236-ad2x2a83.jpg",
+        "alt": ""
       },
       {
-        "src": "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?auto=format&fit=crop&w=1000&q=80",
-        "alt": "Pool"
+        "src": "/uploads/1775057363246-eew6iy2z.jpg",
+        "alt": ""
       },
       {
-        "src": "https://images.unsplash.com/photo-1615460549969-36fa19521a4f?auto=format&fit=crop&w=1000&q=80",
-        "alt": "Lounge"
+        "src": "/uploads/1775057370116-hturv8u4.jpg",
+        "alt": ""
       },
       {
-        "src": "https://images.unsplash.com/photo-1522798514-97ceb8c4f1c8?auto=format&fit=crop&w=1000&q=80",
-        "alt": "Room"
+        "src": "/uploads/1775057372329-vbagk74n.jpg",
+        "alt": ""
       },
       {
-        "src": "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1000&q=80",
-        "alt": "Interior"
+        "src": "/uploads/1775057374855-4i01qi3a.jpg",
+        "alt": ""
       },
       {
-        "src": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=1000&q=80",
-        "alt": "Suite"
-      },
-      {
-        "src": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1000&q=80",
-        "alt": "Reception"
+        "src": "/uploads/1775057376838-5puwsgcf.jpg",
+        "alt": ""
       }
     ]
   },
@@ -378,31 +434,31 @@
     "lines": [
       {
         "label": {
-          "vi": "Dia chi:",
+          "vi": "Địa chỉ:",
           "en": "Address:"
         },
-        "value": "88 Nguyen Hue, Quan 1, TP. Ho Chi Minh"
+        "value": "info@grandsunrisepalace.com"
       },
       {
         "label": {
           "vi": "Hotline:",
           "en": "Hotline:"
         },
-        "value": "0909 888 999"
+        "value": "320 Cửa Đại, Cẩm Châu, Hội An, Quảng Nam 51000"
       },
       {
         "label": {
           "vi": "Email:",
           "en": "Email:"
         },
-        "value": "reservation@blisshotel.vn"
+        "value": "info@grandsunrisepalace.com"
       },
       {
         "label": {
-          "vi": "Le tan:",
+          "vi": "Lễ tân:",
           "en": "Reception:"
         },
-        "value": "24/7"
+        "value": "+84235 3914 888"
       }
     ],
     "socialTitle": {
@@ -432,7 +488,7 @@
       }
     ]
   },
-  "brandLogo": "/uploads/1774981753991-6u9cffqr.jpg",
+  "brandLogo": "/uploads/1775007997541-p9cxdc72.jpg",
   "aboutPage": {
     "heroTitle": "Grand Sunrise Palace Hội An",
     "heroSubtitle": "Grand Sunrise Palace Hoi An",
@@ -465,5 +521,9 @@
       "vi": "Grand Sunrise Palace Hội An",
       "en": "Grand Sunrise Palace Hoi An"
     }
+  },
+  "brandSeo": {
+    "title": "Grand Sunrise Palace Hotel - Hoi An",
+    "sectionStars": 4
   }
 }

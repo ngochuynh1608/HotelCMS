@@ -31,6 +31,7 @@ const NAV = [
   { to: "/admin/gallery", label: "Thư viện ảnh", Icon: IconGallery },
   { to: "/admin/promotions", label: "Khuyến mãi", Icon: IconPromo },
   { to: "/admin/contact", label: "Liên hệ", Icon: IconContact },
+  { to: "/admin/booking", label: "Booking setting", Icon: IconContact },
   { to: "/admin/menu", label: "Menu điều hướng", Icon: IconMenu },
 ];
 

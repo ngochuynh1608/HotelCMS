@@ -8,11 +8,19 @@ export const DEFAULT_SITE_CONTENT = {
   brandName: "Bliss Hotel",
   brandLogo: "",
   footer: "Bliss Hotel - Luxury Stay Experience",
+  brandSeo: {
+    title: "Bliss Hotel - Luxury Stay Experience",
+    description:
+      "Bliss Hotel la khach san luxury contemporary noi ket hop kien truc hien dai, dich vu ca nhan hoa va he sinh thai tien ich cao cap.",
+    icon: "",
+    sectionStars: 3,
+  },
 
   menu: {
     items: [
       { id: "home", type: "route", href: "/", labelVi: "Trang Chu", labelEn: "Home" },
       { id: "about", type: "route", href: "/about-us", labelVi: "Ve Chung Toi", labelEn: "About Us" },
+      { id: "reservation", type: "route", href: "/reservation", labelVi: "Dat Phong", labelEn: "Reservation" },
       {
         id: "rooms",
         type: "dropdown",
@@ -124,6 +132,15 @@ export const DEFAULT_SITE_CONTENT = {
         alt: "Restaurant",
       },
     ],
+  },
+
+  booking: {
+    titleVi: "Đặt phòng",
+    titleEn: "Reservation",
+    subtitleVi: "Bliss Hotel ket noi truc tiep voi he thong dat phong cua doi tac. Ban co the tiep tuc tai day.",
+    subtitleEn: "Bliss Hotel connects directly to our partner booking engine. You can continue your reservation here.",
+    link: "",
+    script: "",
   },
 
   rooms: {

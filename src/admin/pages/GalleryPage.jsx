@@ -1,6 +1,7 @@
 import { Field } from "../components/Field.jsx";
 import { ImageUploadField } from "../components/ImageUploadField.jsx";
 import { useAdminDraft } from "../useAdminDraft.js";
+import { IconToolbarTrash } from "../toolbarIcons.jsx";
 
 export default function GalleryPage() {
   const { draft, setDraft } = useAdminDraft();
@@ -60,22 +61,47 @@ export default function GalleryPage() {
             />
           </Field>
         </div>
-        {(gallery.images || []).map((g, i) => (
-          <div key={i} className="admin-item row2">
-            <ImageUploadField
-              label="Ảnh"
-              value={g.src || ""}
-              accept="image/*"
-              showUrl={false}
-              onChange={(url) => {
-                const images = [...(gallery.images || [])];
-                images[i] = { ...images[i], src: url };
-                setDraft({ ...draft, gallery: { ...gallery, images } });
-              }}
-            />
-            <Field label="Alt">
+        <ImageUploadField
+          label="Tải nhiều ảnh vào thư viện"
+          value=""
+          accept="image/*"
+          showUrl={false}
+          multiple
+          hint="Có thể chọn nhiều file cùng lúc, ảnh sẽ được thêm vào danh sách bên dưới."
+          onChange={(url) => {
+            if (!url) return;
+            const images = [...(gallery.images || []), { src: url, alt: "" }];
+            setDraft({ ...draft, gallery: { ...gallery, images } });
+          }}
+        />
+        <div className="admin-gallery-grid">
+          {(gallery.images || []).map((g, i) => (
+            <div key={i} className="admin-gallery-item">
+              <div className="admin-gallery-item-inner">
+                {g.src ? (
+                  <img src={g.src} alt={g.alt || ""} className="admin-gallery-thumb" />
+                ) : (
+                  <div className="admin-intro-thumb-placeholder" style={{ height: 110 }}>
+                    Chưa có ảnh
+                  </div>
+                )}
+                <button
+                  type="button"
+                  className="admin-gallery-delete"
+                  title="Xóa ảnh"
+                  aria-label="Xóa ảnh"
+                  onClick={() => {
+                    const images = (gallery.images || []).filter((_, j) => j !== i);
+                    setDraft({ ...draft, gallery: { ...gallery, images } });
+                  }}
+                >
+                  <IconToolbarTrash />
+                </button>
+              </div>
               <input
                 type="text"
+                className="admin-gallery-alt"
+                placeholder="Alt / mô tả ảnh"
                 value={g.alt || ""}
                 onChange={(e) => {
                   const images = [...(gallery.images || [])];
@@ -83,21 +109,9 @@ export default function GalleryPage() {
                   setDraft({ ...draft, gallery: { ...gallery, images } });
                 }}
               />
-            </Field>
-            <div style={{ gridColumn: "1 / -1" }}>
-              <button
-                type="button"
-                className="admin-btn"
-                onClick={() => {
-                  const images = (gallery.images || []).filter((_, j) => j !== i);
-                  setDraft({ ...draft, gallery: { ...gallery, images } });
-                }}
-              >
-                Xóa
-              </button>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
         <button
           type="button"
           className="admin-btn"

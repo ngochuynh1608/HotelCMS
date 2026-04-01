@@ -156,6 +156,7 @@ export default function RoomsPage() {
           const representative = room.image || "";
           const selectedAmenities = Array.isArray(room.roomAmenities) ? room.roomAmenities : [];
           const customText = customAmenityByIndex[i] || "";
+          const roomTitle = (room.name || "").trim() || `Phòng ${i + 1}`;
 
           return (
             <div key={i} className="admin-item">
@@ -175,95 +176,102 @@ export default function RoomsPage() {
                   Xóa phòng
                 </button>
               </div>
+              <details open className="admin-room-details">
+                <summary className="admin-room-summary">
+                  <span className="admin-room-summary-title">{roomTitle}</span>
+                  {room.area ? (
+                    <span className="admin-room-summary-meta">
+                      {room.area} m²{room.beds ? ` • ${room.beds} giường` : ""}
+                    </span>
+                  ) : null}
+                </summary>
 
-              <h4>Phòng {i + 1}</h4>
-
-              <Field label="Tên phòng">
-                <input
-                  type="text"
-                  value={room.name || ""}
-                  onChange={(e) => updateRoom(i, { name: e.target.value })}
-                />
-              </Field>
-
-              <Field label="Mô tả">
-                <textarea
-                  value={room.desc || ""}
-                  onChange={(e) => updateRoom(i, { desc: e.target.value })}
-                />
-              </Field>
-
-              <div className="row2">
-                <Field label="Diện tích phòng (m2)">
-                  <input
-                    type="number"
-                    min={0}
-                    step={1}
-                    value={room.area || ""}
-                    onChange={(e) => updateRoom(i, { area: e.target.value })}
-                  />
-                </Field>
-                <Field label="Số giường">
-                  <input
-                    type="number"
-                    min={0}
-                    step={1}
-                    value={room.beds || ""}
-                    onChange={(e) => updateRoom(i, { beds: e.target.value })}
-                  />
-                </Field>
-              </div>
-
-              <div className="row2">
-                <Field label="Giá (VI)">
+                <Field label="Tên phòng">
                   <input
                     type="text"
-                    value={typeof room.price === "string" ? room.price : room.price?.vi || ""}
-                    onChange={(e) =>
-                      updateRoom(i, {
-                        price: { ...(typeof room.price === "object" ? room.price : {}), vi: e.target.value },
-                      })
-                    }
+                    value={room.name || ""}
+                    onChange={(e) => updateRoom(i, { name: e.target.value })}
                   />
                 </Field>
-                <Field label="Giá (EN)">
-                  <input
-                    type="text"
-                    value={typeof room.price === "object" ? room.price?.en || "" : ""}
-                    onChange={(e) =>
-                      updateRoom(i, {
-                        price: { ...(typeof room.price === "object" ? room.price : {}), en: e.target.value },
-                      })
-                    }
+
+                <Field label="Mô tả">
+                  <textarea
+                    value={room.desc || ""}
+                    onChange={(e) => updateRoom(i, { desc: e.target.value })}
                   />
                 </Field>
-              </div>
 
-              <MultiImageUploadField
-                label="Ảnh phòng (nhiều ảnh)"
-                hint="Chọn 1 ảnh đại diện để hiển thị ở danh sách phòng & banner chi tiết."
-                images={roomImages}
-                representative={representative}
-                accept="image/*"
-                onChangeImages={(nextImages) => {
-                  const nextRep =
-                    representative && nextImages.some((im) => im.src === representative)
-                      ? representative
-                      : nextImages[0]?.src || "";
-                  updateRoom(i, { images: nextImages, image: nextRep });
-                }}
-                onChangeRepresentative={(src) => {
-                  updateRoom(i, { image: src });
-                }}
-              />
+                <div className="row2">
+                  <Field label="Diện tích phòng (m2)">
+                    <input
+                      type="number"
+                      min={0}
+                      step={1}
+                      value={room.area || ""}
+                      onChange={(e) => updateRoom(i, { area: e.target.value })}
+                    />
+                  </Field>
+                  <Field label="Số giường">
+                    <input
+                      type="number"
+                      min={0}
+                      step={1}
+                      value={room.beds || ""}
+                      onChange={(e) => updateRoom(i, { beds: e.target.value })}
+                    />
+                  </Field>
+                </div>
 
-              <Field label="Tiện ích phòng">
-                <details
-                  className="admin-disclosure"
-                  open={amenitiesOpen}
-                  onToggle={(e) => setAmenitiesOpen(e.currentTarget.open)}
-                >
-                  <summary>Chọn tiện ích phòng</summary>
+                <div className="row2">
+                  <Field label="Giá (VI)">
+                    <input
+                      type="text"
+                      value={typeof room.price === "string" ? room.price : room.price?.vi || ""}
+                      onChange={(e) =>
+                        updateRoom(i, {
+                          price: { ...(typeof room.price === "object" ? room.price : {}), vi: e.target.value },
+                        })
+                      }
+                    />
+                  </Field>
+                  <Field label="Giá (EN)">
+                    <input
+                      type="text"
+                      value={typeof room.price === "object" ? room.price?.en || "" : ""}
+                      onChange={(e) =>
+                        updateRoom(i, {
+                          price: { ...(typeof room.price === "object" ? room.price : {}), en: e.target.value },
+                        })
+                      }
+                    />
+                  </Field>
+                </div>
+
+                <MultiImageUploadField
+                  label="Ảnh phòng (nhiều ảnh)"
+                  hint="Chọn 1 ảnh đại diện để hiển thị ở danh sách phòng & banner chi tiết."
+                  images={roomImages}
+                  representative={representative}
+                  accept="image/*"
+                  onChangeImages={(nextImages) => {
+                    const nextRep =
+                      representative && nextImages.some((im) => im.src === representative)
+                        ? representative
+                        : nextImages[0]?.src || "";
+                    updateRoom(i, { images: nextImages, image: nextRep });
+                  }}
+                  onChangeRepresentative={(src) => {
+                    updateRoom(i, { image: src });
+                  }}
+                />
+
+                <Field label="Tiện ích phòng">
+                  <details
+                    className="admin-disclosure"
+                    open={amenitiesOpen}
+                    onToggle={(e) => setAmenitiesOpen(e.currentTarget.open)}
+                  >
+                    <summary>Chọn tiện ích phòng</summary>
                   <div className="admin-amenity-picker">
                     <div className="admin-amenity-grid">
                       {ROOM_AMENITY_PRESETS.map((opt) => {
@@ -356,6 +364,7 @@ export default function RoomsPage() {
                   </div>
                 </details>
               </Field>
+              </details>
             </div>
           );
         })}

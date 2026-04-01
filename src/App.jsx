@@ -10,6 +10,10 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileNav, setMobileNav] = useState(false);
   const location = useLocation();
+  const stars =
+    typeof content.brandSeo?.sectionStars === "number" && content.brandSeo.sectionStars > 0
+      ? "★ ".repeat(content.brandSeo.sectionStars).trim()
+      : "";
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 900px)");
@@ -30,6 +34,34 @@ function App() {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- close menu on route change
     setMenuOpen(false);
   }, [location.pathname]);
+
+  // SEO: title, description, favicon
+  useEffect(() => {
+    const seo = content.brandSeo || {};
+    const baseTitle = seo.title || content.brandName || "Bliss Hotel";
+    document.title = baseTitle;
+
+    const desc = seo.description || "";
+    if (desc) {
+      let meta = document.querySelector('meta[name="description"]');
+      if (!meta) {
+        meta = document.createElement("meta");
+        meta.setAttribute("name", "description");
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute("content", desc);
+    }
+
+    if (seo.icon) {
+      let link = document.querySelector('link[rel="icon"]');
+      if (!link) {
+        link = document.createElement("link");
+        link.setAttribute("rel", "icon");
+        document.head.appendChild(link);
+      }
+      link.setAttribute("href", seo.icon);
+    }
+  }, [content.brandSeo, content.brandName, location.pathname]);
 
   useEffect(() => {
     if (!menuOpen) return;

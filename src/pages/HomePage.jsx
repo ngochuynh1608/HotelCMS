@@ -174,6 +174,7 @@ export default function HomePage() {
   const gallery = content.gallery?.images || [];
   const promotions = content.promotions?.items || [];
   const contact = content.contact || {};
+  const [activeAmenity, setActiveAmenity] = useState(null);
 
   return (
     <main className="page">
@@ -214,10 +215,10 @@ export default function HomePage() {
           </h1>
           <p>{pick(lang, hero.subtitle)}</p>
           <div className="hero-actions">
-            <a className="btn btn-primary" href={normalizeHref(hero.primaryCta?.href)}>
+            <a className="btn btn-primary" href="/reservation" target="_blank" rel="noreferrer">
               {pick(lang, { vi: hero.primaryCta?.vi, en: hero.primaryCta?.en })}
             </a>
-            <a className="btn btn-ghost" href={normalizeHref(hero.secondaryCta?.href)}>
+            <a className="btn btn-ghost" href="/reservation" target="_blank" rel="noreferrer">
               {pick(lang, { vi: hero.secondaryCta?.vi, en: hero.secondaryCta?.en })}
             </a>
           </div>
@@ -226,7 +227,9 @@ export default function HomePage() {
 
       <section id="gioi-thieu" className="intro">
         <div className="container section-head">
-          <h2>{pick(lang, intro.sectionTitle)}</h2>
+          <h2 data-stars={content.brandSeo?.sectionStars ? "★ ".repeat(content.brandSeo.sectionStars).trim() : ""}>
+            {pick(lang, intro.sectionTitle)}
+          </h2>
         </div>
         <div className="container grid-2 intro-grid">
           <article className="intro-card">
@@ -252,7 +255,9 @@ export default function HomePage() {
 
       <section id="phong" className="container">
         <div className="section-head">
-          <h2>{pick(lang, content.rooms?.sectionTitle)}</h2>
+          <h2 data-stars={content.brandSeo?.sectionStars ? "★ ".repeat(content.brandSeo.sectionStars).trim() : ""}>
+            {pick(lang, content.rooms?.sectionTitle)}
+          </h2>
           <p>{pick(lang, content.rooms?.sectionSubtitle)}</p>
         </div>
         {rooms.length > 0 ? (
@@ -320,7 +325,9 @@ export default function HomePage() {
 
       <section id="tien-ich" className="container">
         <div className="section-head">
-          <h2>
+          <h2
+            data-stars={content.brandSeo?.sectionStars ? "★ ".repeat(content.brandSeo.sectionStars).trim() : ""}
+          >
             {typeof content.amenities?.sectionTitle === "string"
               ? content.amenities.sectionTitle
               : pick(lang, content.amenities?.sectionTitle)}
@@ -336,7 +343,15 @@ export default function HomePage() {
             <article key={a.title} className="amenity">
               <img src={a.image} alt={a.alt || a.title} />
               <h3>{pick(lang, a.title)}</h3>
-              <p>{pick(lang, a.desc)}</p>
+              <p className="amenity-desc-short">{pick(lang, a.desc)}</p>
+              <button
+                type="button"
+                className="btn"
+                style={{ marginTop: "0.6rem", paddingInline: "0.9rem", fontSize: "0.8rem" }}
+                onClick={() => setActiveAmenity(a)}
+              >
+                {lang === "vi" ? "Xem thêm" : "View details"}
+              </button>
             </article>
           ))}
         </div>
@@ -344,7 +359,9 @@ export default function HomePage() {
 
       <section id="hinh-anh" className="container">
         <div className="section-head">
-          <h2>{pick(lang, content.gallery?.sectionTitle)}</h2>
+          <h2 data-stars={content.brandSeo?.sectionStars ? "★ ".repeat(content.brandSeo.sectionStars).trim() : ""}>
+            {pick(lang, content.gallery?.sectionTitle)}
+          </h2>
           <p>{pick(lang, content.gallery?.sectionSubtitle)}</p>
         </div>
         <div className="gallery-grid">
@@ -356,7 +373,9 @@ export default function HomePage() {
 
       <section id="promotions" className="container">
         <div className="section-head">
-          <h2>{pick(lang, content.promotions?.sectionTitle)}</h2>
+          <h2 data-stars={content.brandSeo?.sectionStars ? "★ ".repeat(content.brandSeo.sectionStars).trim() : ""}>
+            {pick(lang, content.promotions?.sectionTitle)}
+          </h2>
           <p>{pick(lang, content.promotions?.sectionSubtitle)}</p>
         </div>
         <div className="amenity-grid">
@@ -372,7 +391,9 @@ export default function HomePage() {
 
       <section id="lien-he" className="container">
         <div className="section-head">
-          <h2>{pick(lang, contact.sectionTitle)}</h2>
+          <h2 data-stars={content.brandSeo?.sectionStars ? "★ ".repeat(content.brandSeo.sectionStars).trim() : ""}>
+            {pick(lang, contact.sectionTitle)}
+          </h2>
           <p>{pick(lang, contact.sectionSubtitle)}</p>
         </div>
         <div className="contact-wrap">
@@ -393,6 +414,39 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {activeAmenity ? (
+        <div
+          className="admin-modal-backdrop"
+          onClick={() => setActiveAmenity(null)}
+          style={{ zIndex: 30 }}
+        >
+          <div
+            className="admin-modal"
+            onClick={(e) => e.stopPropagation()}
+            style={{ maxWidth: "640px" }}
+          >
+            <div className="admin-modal-header">
+              <h3>{pick(lang, activeAmenity.title)}</h3>
+            </div>
+            <div className="admin-modal-body">
+              {activeAmenity.image ? (
+                <img
+                  src={activeAmenity.image}
+                  alt={activeAmenity.alt || pick(lang, activeAmenity.title)}
+                  style={{ width: "100%", maxHeight: "260px", objectFit: "cover", borderRadius: "12px" }}
+                />
+              ) : null}
+              <p>{pick(lang, activeAmenity.desc)}</p>
+            </div>
+            <div className="admin-modal-footer">
+              <button type="button" className="admin-btn" onClick={() => setActiveAmenity(null)}>
+                {lang === "vi" ? "Đóng" : "Close"}
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </main>
   );
 }

@@ -965,9 +965,14 @@ section {
   }
 
   .menu .lang-switch {
-    margin-top: 0.75rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--line);
+    /* Put language switcher on top inside the mobile drawer */
+    order: -1;
+    margin-top: 0;
+    padding-top: 0.35rem;
+    border-top: none;
+
+    /* Center the VI/EN buttons */
+    width: 100%;
     justify-content: center;
   }
 

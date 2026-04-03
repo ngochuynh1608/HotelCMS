@@ -36,13 +36,7 @@ export default function ReservationPage() {
                 // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{ __html: scriptHtml }}
               />
-            ) : (
-              <p style={{ fontSize: "0.9rem", color: "#5c5240" }}>
-                {lang === "vi"
-                  ? "Chưa có script booking. Vui lòng cấu hình trong Admin &gt; Booking setting."
-                  : "No booking script configured yet. Please set it up in Admin &gt; Booking setting."}
-              </p>
-            )}
+            ) : null}
           </div>
         </div>
       </section>

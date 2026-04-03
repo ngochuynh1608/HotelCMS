@@ -2,8 +2,12 @@ import { useState } from "react";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { isAdminLoggedIn, setAdminSession } from "./session.js";
 import "../admin.css";
+import { useSiteContent } from "../site-content/useSiteContent.js";
 
 export default function AdminLogin() {
+  const { content } = useSiteContent();
+  const brandName = content?.brandName || "Thương hiệu";
+
   const navigate = useNavigate();
   const location = useLocation();
   const [key, setKey] = useState("");
@@ -41,7 +45,7 @@ export default function AdminLogin() {
   return (
     <div className="admin admin-login">
       <div className="admin-login-card">
-        <h1>Bliss Hotel CMS</h1>
+        <h1>{brandName} CMS</h1>
         <p className="admin-login-lead">Đăng nhập để chỉnh sửa nội dung website.</p>
         <form onSubmit={handleSubmit}>
           <label className="admin-field">

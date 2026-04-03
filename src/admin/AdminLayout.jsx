@@ -1,6 +1,7 @@
-import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { clearAdminSession } from "./session.js";
 import { useAdminDraft } from "./useAdminDraft.js";
+import { useEffect, useState } from "react";
 import {
   IconAmenities,
   IconBrand,
@@ -37,7 +38,22 @@ const NAV = [
 
 export default function AdminLayout() {
   const navigate = useNavigate();
-  const { save, saving, msg, err, reloadDraft, downloadJson, importJson, resetDefault } = useAdminDraft();
+  const location = useLocation();
+  const { save, saving, msg, err, downloadJson, importJson } = useAdminDraft();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") setMobileMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [mobileMenuOpen]);
 
   function logout() {
     clearAdminSession();
@@ -46,14 +62,39 @@ export default function AdminLayout() {
 
   return (
     <div className="admin admin-app">
-      <aside className="admin-sidebar">
+      <div
+        className={`admin-nav-backdrop${mobileMenuOpen ? " is-visible" : ""}`}
+        aria-hidden="true"
+        onClick={() => setMobileMenuOpen(false)}
+      />
+      <button
+        type="button"
+        className={`admin-nav-toggle${mobileMenuOpen ? " is-open" : ""}`}
+        aria-expanded={mobileMenuOpen}
+        aria-label="Mở/đóng menu admin"
+        onClick={() => setMobileMenuOpen((v) => !v)}
+      >
+        <span className="admin-nav-toggle-bar" aria-hidden />
+        <span className="admin-nav-toggle-bar" aria-hidden />
+        <span className="admin-nav-toggle-bar" aria-hidden />
+      </button>
+      <aside className={`admin-sidebar${mobileMenuOpen ? " is-open" : ""}`}>
         <div className="admin-sidebar-brand">CMS</div>
+        <button
+          type="button"
+          className="admin-sidebar-close"
+          aria-label="Đóng menu"
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          &#215;
+        </button>
         <nav className="admin-nav" aria-label="Admin menu">
           {NAV.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
               className={({ isActive }) => `admin-nav-link${isActive ? " is-active" : ""}`}
+              onClick={() => setMobileMenuOpen(false)}
             >
               <span className="admin-nav-icon" aria-hidden>
                 <item.Icon />
@@ -66,7 +107,7 @@ export default function AdminLayout() {
           <span className="admin-nav-icon" aria-hidden>
             <IconLogout />
           </span>
-          <span>Đăng xuất</span>
+          <span className="admin-logout-text">Đăng xuất</span>
         </button>
       </aside>
       <div className="admin-main">
@@ -78,18 +119,6 @@ export default function AdminLayout() {
                 <IconToolbarSave />
               </span>
               {saving ? "Đang lưu..." : "Lưu lên server"}
-            </button>
-            <button type="button" className="admin-btn" onClick={reloadDraft}>
-              <span className="admin-btn-icon">
-                <IconToolbarRefresh />
-              </span>
-              Tải lại từ server
-            </button>
-            <button type="button" className="admin-btn" onClick={resetDefault}>
-              <span className="admin-btn-icon">
-                <IconToolbarReset />
-              </span>
-              Reset bản nháp
             </button>
             <button type="button" className="admin-btn" onClick={downloadJson}>
               <span className="admin-btn-icon">

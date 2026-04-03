@@ -57,29 +57,105 @@
   min-height: 100vh;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .admin-app {
+    display: block;
     grid-template-columns: 1fr;
   }
 
+  /* Make toolbar layout predictable on mobile */
+  .admin-toolbar-title {
+    margin-right: 0;
+    flex: 1;
+  }
+
+  .admin-toolbar-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
   .admin-sidebar {
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 5;
-    border-right: none;
-    border-bottom: 1px solid rgba(200, 162, 69, 0.25);
+    left: 0;
+    height: 100dvh;
+    width: 260px;
+    z-index: 1000;
+    border-right: 1px solid rgba(200, 162, 69, 0.25);
+    border-bottom: none;
+    transform: translateX(-110%);
+    transition: transform 0.28s ease;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 
-  .admin-nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-    padding: 0.5rem 0.75rem 0;
+  .admin-sidebar.is-open {
+    transform: translateX(0);
   }
 
-  .admin-nav .admin-nav-link {
-    padding: 0.4rem 0.65rem;
-    font-size: 0.78rem;
+  .admin-nav-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 44px;
+    height: 44px;
+    left: 1rem;
+    top: 0.75rem;
+    z-index: 2000;
+    background: rgba(255, 253, 248, 0.95);
+    border: 1px solid rgba(200, 162, 69, 0.38);
+  }
+
+  .admin-nav-toggle-bar {
+    background: #8d6510;
+    height: 2px;
+    width: 1.55rem;
+    margin: 4px 0;
+    border-radius: 2px;
+  }
+
+  .admin-toolbar-actions {
+    padding-left: 0;
+  }
+
+  .admin-nav-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(28, 22, 14, 0.45);
+    z-index: 900;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
+
+  .admin-nav-backdrop.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .admin-nav-text {
+    display: none;
+  }
+
+  .admin-logout-text {
+    display: none;
+  }
+
+  .admin-sidebar.is-open .admin-nav-text {
+    display: inline-block;
+  }
+
+  .admin-sidebar.is-open .admin-logout-text {
+    display: inline-block;
+  }
+
+  .admin-sidebar.is-open .admin-sidebar-close {
+    display: inline-flex;
   }
 }
 
@@ -89,6 +165,7 @@
   display: flex;
   flex-direction: column;
   padding: 1rem 0 1rem;
+  position: relative;
 }
 
 .admin-sidebar-brand {
@@ -210,6 +287,78 @@
   flex-wrap: wrap;
   gap: 0.45rem;
   align-items: center;
+}
+
+.admin-nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #8d6510;
+  padding: 0;
+}
+
+.admin-nav-toggle:focus-visible {
+  outline: 2px solid #d9b868;
+  outline-offset: 2px;
+}
+
+.admin-nav-toggle-bar {
+  display: block;
+  height: 2px;
+  width: 1.55rem;
+  background: currentColor;
+  border-radius: 2px;
+  margin: 5px auto 0;
+  transition: transform 0.28s ease, opacity 0.2s ease;
+}
+
+.admin-nav-toggle.is-open .admin-nav-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.admin-nav-toggle.is-open .admin-nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+.admin-nav-toggle.is-open .admin-nav-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.admin-nav-backdrop {
+  display: none;
+}
+
+.admin-sidebar-close {
+  display: none;
+  position: absolute;
+  top: 0.55rem;
+  right: 0.55rem;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(200, 162, 69, 0.38);
+  background: rgba(255, 253, 248, 0.92);
+  color: #5a4a30;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  box-shadow: var(--admin-shadow-btn);
+  z-index: 1201;
+}
+
+.admin-sidebar-close:hover {
+  background: rgba(255, 253, 248, 1);
+}
+
+@media (min-width: 1400px) {
+  .admin-nav-toggle {
+    display: none;
+  }
 }
 
 .admin-btn-icon {
@@ -847,4 +996,107 @@
 .admin-amenity-translate-row input[type="text"] {
   width: 100%;
   font-size: 0.85rem;
+}
+
+/* Mobile overrides (keep here at the end so they win over base rules) */
+@media (max-width: 1100px) {
+  .admin-app {
+    display: block;
+    grid-template-columns: 1fr;
+  }
+
+  /* Reserve space for the fixed hamburger button */
+  .admin-toolbar {
+    padding-left: 4.75rem;
+  }
+
+  /* Sidebar becomes an off-canvas drawer (fixed so it doesn't push content down) */
+  .admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100dvh;
+    width: 260px;
+    z-index: 1000;
+    border-right: 1px solid rgba(200, 162, 69, 0.25);
+    border-bottom: none;
+    transform: translateX(-110%);
+    transition: transform 0.28s ease;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background: #faf8f4;
+  }
+
+  .admin-sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  .admin-nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 44px;
+    height: 44px;
+    left: 0.75rem;
+    top: 0.75rem;
+    z-index: 2000;
+    background: rgba(255, 253, 248, 0.95);
+    border: 1px solid rgba(200, 162, 69, 0.38);
+  }
+
+  .admin-nav-toggle-bar {
+    background: #8d6510;
+  }
+
+  .admin-nav-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(28, 22, 14, 0.45);
+    z-index: 900;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
+
+  .admin-nav-backdrop.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* Mobile: hide text labels, show them only when drawer is open */
+  .admin-nav-text {
+    display: none;
+  }
+
+  .admin-logout-text {
+    display: none;
+  }
+
+  .admin-sidebar.is-open .admin-nav-text {
+    display: inline-block;
+  }
+
+  .admin-sidebar.is-open .admin-logout-text {
+    display: inline-block;
+  }
+
+  .admin-sidebar.is-open .admin-sidebar-close {
+    display: inline-flex;
+  }
+
+  /* Keep toolbar layout consistent when drawer exists */
+  .admin-toolbar-title {
+    margin-right: 0;
+    flex: 1;
+  }
+
+  .admin-toolbar-actions {
+    width: 100%;
+    justify-content: flex-start;
+    padding-left: 0;
+  }
 }

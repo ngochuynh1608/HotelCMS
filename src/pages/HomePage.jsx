@@ -9,6 +9,18 @@ function pick(lang, o) {
   return lang === "vi" ? o.vi : o.en;
 }
 
+function keyFromPossibleObject(v) {
+  if (v == null) return "";
+  if (typeof v === "object") {
+    try {
+      return JSON.stringify(v);
+    } catch {
+      return String(v);
+    }
+  }
+  return String(v);
+}
+
 function normalizeHref(h) {
   if (!h) return "/";
   if (h.startsWith("http")) return h;
@@ -339,11 +351,14 @@ export default function HomePage() {
           </p>
         </div>
         <div className="amenity-grid">
-          {amenities.map((a) => (
-            <article key={a.title} className="amenity">
-              <img src={a.image} alt={a.alt || a.title} />
-              <h3>{pick(lang, a.title)}</h3>
-              <p className="amenity-desc-short">{pick(lang, a.desc)}</p>
+          {amenities.map((a, i) => {
+            const titleText = typeof a.title === "string" ? a.title : pick(lang, a.title);
+            const descText = typeof a.desc === "string" ? a.desc : pick(lang, a.desc);
+            return (
+              <article key={`${i}-${keyFromPossibleObject(a.title)}-${a.image || a.alt || ""}`} className="amenity">
+                <img src={a.image} alt={a.alt || titleText || ""} />
+                <h3>{titleText}</h3>
+                <p className="amenity-desc-short">{descText}</p>
               <button
                 type="button"
                 className="btn"
@@ -352,8 +367,9 @@ export default function HomePage() {
               >
                 {lang === "vi" ? "Xem thêm" : "View details"}
               </button>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
       </section>
 
@@ -379,13 +395,18 @@ export default function HomePage() {
           <p>{pick(lang, content.promotions?.sectionSubtitle)}</p>
         </div>
         <div className="amenity-grid">
-          {promotions.map((p) => (
-            <article key={p.title} className="amenity">
-              <img src={p.image} alt={p.alt || p.title} />
-              <h3>{p.title}</h3>
-              <p>{p.desc}</p>
-            </article>
-          ))}
+          {promotions.map((p, i) => {
+            const titleText = typeof p.title === "string" ? p.title : pick(lang, p.title);
+            const descText = typeof p.desc === "string" ? p.desc : pick(lang, p.desc);
+            const altText = p.alt || titleText || "";
+            return (
+              <article key={`${i}-${keyFromPossibleObject(p.title)}-${p.image || p.alt || ""}`} className="amenity">
+                <img src={p.image} alt={altText} />
+                <h3>{titleText}</h3>
+                <p>{descText}</p>
+              </article>
+            );
+          })}
         </div>
       </section>
 

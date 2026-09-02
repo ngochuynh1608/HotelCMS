@@ -44,12 +44,17 @@ async function migrate() {
     )
   `);
 
-  const contentCount = await db.query("SELECT 1 FROM site_content WHERE id = 1 LIMIT 1");
+  const seed = loadSeedContent();
+  const contentCount = await db.query("SELECT data FROM site_content WHERE id = 1 LIMIT 1");
   if (contentCount.rowCount === 0) {
     await db.query(
       "INSERT INTO site_content (id, data, updated_at) VALUES (1, $1::jsonb, NOW())",
-      [JSON.stringify(loadSeedContent())]
+      [JSON.stringify(seed)]
     );
+  } else if (contentCount.rows[0]?.data?.brandName === "Bliss Hotel" && seed.brandName !== "Bliss Hotel") {
+    await db.query("UPDATE site_content SET data = $1::jsonb, updated_at = NOW() WHERE id = 1", [
+      JSON.stringify(seed),
+    ]);
   }
 
   const adminCount = await db.query("SELECT 1 FROM admins LIMIT 1");

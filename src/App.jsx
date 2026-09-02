@@ -13,7 +13,7 @@ function readStoredLang() {
   } catch {
     /* ignore */
   }
-  return "vi";
+  return "en";
 }
 
 function App() {

@@ -24,7 +24,7 @@ function resolveRoomImages(room) {
 
 export default function RoomDetailPage() {
   const { roomId } = useParams();
-  const { lang = "vi" } = useOutletContext() ?? {};
+  const { lang = "en" } = useOutletContext() ?? {};
   const { content } = useSiteContent();
   const roomsConfig = content.rooms || {};
   const rooms = roomsConfig.items || [];

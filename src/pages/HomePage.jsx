@@ -80,7 +80,7 @@ function RoomCardMeta({ room, lang }) {
 }
 
 export default function HomePage() {
-  const { lang = "vi" } = useOutletContext() ?? {};
+  const { lang = "en" } = useOutletContext() ?? {};
   const { content } = useSiteContent();
   const hero = content.hero || {};
   const slides = useMemo(

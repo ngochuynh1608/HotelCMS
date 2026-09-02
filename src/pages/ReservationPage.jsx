@@ -16,7 +16,7 @@ function bookingScriptForLang(booking, lang) {
 }
 
 export default function ReservationPage() {
-  const { lang = "vi" } = useOutletContext() ?? {};
+  const { lang = "en" } = useOutletContext() ?? {};
   const { content } = useSiteContent();
   const [params] = useSearchParams();
   const booking = content.booking || {};

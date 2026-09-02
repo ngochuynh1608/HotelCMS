@@ -8,7 +8,7 @@ function toISODate(d) {
   return `${y}-${m}-${day}`;
 }
 
-export function BookingBar({ lang = "vi" }) {
+export function BookingBar({ lang = "en" }) {
   const navigate = useNavigate();
   const defaults = useMemo(() => {
     const inDate = new Date();

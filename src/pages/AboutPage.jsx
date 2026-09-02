@@ -8,7 +8,7 @@ function pick(lang, o) {
 }
 
 function AboutPage() {
-  const { lang = "vi" } = useOutletContext() ?? {};
+  const { lang = "en" } = useOutletContext() ?? {};
   const { content } = useSiteContent();
   const about = content.aboutPage || {};
 

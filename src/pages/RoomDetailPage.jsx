@@ -42,7 +42,7 @@ export default function RoomDetailPage() {
   const images = resolveRoomImages(room);
   const roomAmenities = Array.isArray(room?.roomAmenities) ? room.roomAmenities : [];
   const features = [
-    room?.area ? `${lang === "vi" ? "Diện tích" : "Area"}: ${room.area} m2` : null,
+    room?.area ? `${lang === "vi" ? "Diện tích" : "Area"}: ${room.area} m²` : null,
     room?.beds ? `${lang === "vi" ? "Số giường" : "Beds"}: ${room.beds}` : null,
     ...roomAmenities.map((x) => {
       const preset = AMENITY_LABELS[x];
@@ -55,10 +55,18 @@ export default function RoomDetailPage() {
     }),
   ].filter(Boolean);
 
+  useEffect(() => {
+    if (currentIndex >= 0) setThumbStart(currentIndex);
+  }, [currentIndex]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [roomId]);
+
   if (!room) {
     return (
       <main className="page">
-        <section className="container" style={{ paddingTop: "2rem", paddingBottom: "2rem" }}>
+        <section className="container page-offset" style={{ paddingTop: "2rem", paddingBottom: "2rem" }}>
           <h2>{lang === "vi" ? "Chưa có dữ liệu phòng" : "No room data yet"}</h2>
           <p>{lang === "vi" ? "Vui lòng thêm phòng trong Admin CMS." : "Please add rooms in Admin CMS."}</p>
           <Link className="btn btn-primary" to="/">
@@ -76,20 +84,23 @@ export default function RoomDetailPage() {
     return { room: rooms[idx], idx };
   });
 
-  useEffect(() => {
-    if (currentIndex >= 0) setThumbStart(currentIndex);
-  }, [currentIndex]);
-
   return (
     <main className="page">
       <section
-        className="hero"
+        className="hero hero-compact"
         style={{
           backgroundImage: heroImage ? `url('${heroImage}')` : "none",
         }}
       >
         <div className="hero-overlay">
           <div className="container hero-inner">
+            <p className="crumb">
+              <Link to="/">{lang === "vi" ? "Trang chủ" : "Home"}</Link>
+              <span>/</span>
+              <Link to="/#phong">{lang === "vi" ? "Phòng" : "Rooms"}</Link>
+              <span>/</span>
+              <span>{room.name}</span>
+            </p>
             <h1>{room.name || (lang === "vi" ? "Chi tiết phòng" : "Room details")}</h1>
             <p>{room.desc || ""}</p>
           </div>
@@ -109,10 +120,19 @@ export default function RoomDetailPage() {
               ))}
             </div>
             {room.price ? (
-              <p style={{ marginTop: "1rem", fontWeight: 700 }}>
-                {typeof room.price === "object" ? pick(lang, room.price) : room.price}
+              <div className="room-price-block">
+                <strong>{typeof room.price === "object" ? pick(lang, room.price) : room.price}</strong>
+                <Link className="btn btn-primary" to="/reservation">
+                  {lang === "vi" ? "Đặt phòng này" : "Book this room"}
+                </Link>
+              </div>
+            ) : (
+              <p style={{ marginTop: "1rem" }}>
+                <Link className="btn btn-primary" to="/reservation">
+                  {lang === "vi" ? "Đặt phòng" : "Reserve"}
+                </Link>
               </p>
-            ) : null}
+            )}
           </article>
           <div className="gallery-2">
             {images.map((img, i) => (
@@ -144,24 +164,39 @@ export default function RoomDetailPage() {
           </div>
         ) : null}
         <div className="room-thumbs room-thumbs-inline">
-          {visibleRooms.map(({ room: r, idx }) => (
-            <Link
-              key={(r.name || "room") + idx}
-              className={`room-thumb ${idx === currentIndex ? "is-active" : ""}`}
-              to={getRoomHref(r, idx)}
-            >
-              <img src={r.image || resolveRoomImages(r)[0]?.src || ""} alt={r.name || ""} />
-              <div className="room-thumb-meta">
-                <h4>{r.name || (lang === "vi" ? `Phòng ${idx + 1}` : `Room ${idx + 1}`)}</h4>
-                {r.desc ? <p>{r.desc}</p> : null}
-                {r.price ? (
-                  <span className="room-thumb-price">
-                    {typeof r.price === "object" ? pick(lang, r.price) : r.price}
-                  </span>
-                ) : null}
-              </div>
-            </Link>
-          ))}
+          {visibleRooms.map(({ room: r, idx }) => {
+            const body = (
+              <>
+                <img src={r.image || resolveRoomImages(r)[0]?.src || ""} alt={r.name || ""} />
+                <div className="room-thumb-meta">
+                  <h4>{r.name || (lang === "vi" ? `Phòng ${idx + 1}` : `Room ${idx + 1}`)}</h4>
+                  {r.desc ? <p>{r.desc}</p> : null}
+                  {r.price ? (
+                    <span className="room-thumb-price">
+                      {typeof r.price === "object" ? pick(lang, r.price) : r.price}
+                    </span>
+                  ) : null}
+                </div>
+              </>
+            );
+            if (idx === currentIndex) {
+              return (
+                <div key={(r.name || "room") + idx} className="room-thumb is-active">
+                  {body}
+                </div>
+              );
+            }
+            return (
+              <Link
+                key={(r.name || "room") + idx}
+                className="room-thumb"
+                to={{ pathname: getRoomHref(r, idx), hash: "" }}
+                onClick={() => window.scrollTo(0, 0)}
+              >
+                {body}
+              </Link>
+            );
+          })}
         </div>
       </section>
     </main>

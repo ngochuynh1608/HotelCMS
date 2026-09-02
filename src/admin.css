@@ -9,7 +9,7 @@
   min-height: 100vh;
   background: #ffffff;
   color: #1f1a12;
-  font-family: "Google Sans Flex", system-ui, sans-serif;
+  font-family: Karla, system-ui, sans-serif;
 }
 
 .admin a {
@@ -517,6 +517,14 @@
 .admin textarea {
   min-height: 80px;
   resize: vertical;
+}
+
+.admin-code {
+  min-height: 160px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
 }
 
 .admin .row2 {

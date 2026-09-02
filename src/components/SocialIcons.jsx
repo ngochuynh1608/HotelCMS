@@ -11,7 +11,7 @@ export function SocialIcons({ links, lang }) {
     const path = PATHS[link.platform] || PATHS.facebook;
     const aria = lang === "vi" ? link.ariaVi : link.ariaEn;
     return (
-      <a key={link.id} className="social-link" href={link.href} aria-label={aria || link.label}>
+      <a key={link.id} className="social-link" href={link.href} aria-label={aria || link.label} target="_blank" rel="noreferrer">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d={path} />
         </svg>

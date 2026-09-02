@@ -2,7 +2,7 @@
 
 /**
  * Single source of truth for initial / fallback site content.
- * Admin edits persist to data/site-content.json via the API.
+ * Admin edits persist to PostgreSQL (DATABASE_URL) or data/site-content.json.
  */
 export const DEFAULT_SITE_CONTENT = {
   brandName: "Bliss Hotel",
@@ -13,8 +13,14 @@ export const DEFAULT_SITE_CONTENT = {
     description:
       "Bliss Hotel la khach san luxury contemporary noi ket hop kien truc hien dai, dich vu ca nhan hoa va he sinh thai tien ich cao cap.",
     icon: "",
-    sectionStars: 3,
+    sectionStars: 0,
   },
+  trust: [
+    { value: "9.7", label: { vi: "Điểm dịch vụ", en: "Guest score" } },
+    { value: "85", label: { vi: "Phòng & suite", en: "Rooms & suites" } },
+    { value: "2 km", label: { vi: "Phố cổ Hội An", en: "Ancient Town" } },
+    { value: "3 km", label: { vi: "Biển Cửa Đại", en: "Cua Dai Beach" } },
+  ],
 
   menu: {
     items: [
@@ -24,7 +30,7 @@ export const DEFAULT_SITE_CONTENT = {
       {
         id: "rooms",
         type: "dropdown",
-        href: "/room-detail",
+        href: "/#phong",
         labelVi: "Phong",
         labelEn: "Rooms",
         children: [
@@ -67,14 +73,14 @@ export const DEFAULT_SITE_CONTENT = {
         alt: "Resort pool",
       },
     ],
-    eyebrow: { vi: "Luxury Retreat Collection", en: "Luxury Retreat Collection" },
-    titleLine1: { vi: "A New Signature", en: "A New Signature" },
-    titleLine2: { vi: "Of Timeless Luxury", en: "Of Timeless Luxury" },
+    eyebrow: { vi: "Hội An · 320 Cửa Đại", en: "Hoi An · 320 Cua Dai" },
+    titleLine1: { vi: "Đông Dương", en: "Indochine" },
+    titleLine2: { vi: "bên bãi Cửa Đại", en: "by Cua Dai Beach" },
     subtitle: {
-      vi: "Bliss Hotel mang den ky nghi 5 sao voi kien truc tinh te, khong gian nghi duong an yen va dich vu ca nhan hoa cho tung khoanh khac cua ban.",
-      en: "Bliss Hotel offers a five-star stay with refined architecture, serene spaces, and personalized service for every moment.",
+      vi: "Năm phút tới phố cổ, bảy phút tới biển. 85 phòng và suite, nhà hàng Indochine, spa và hồ bơi.",
+      en: "Five minutes to the Ancient Town, seven to the beach. 85 rooms and suites, Indochine dining, spa and pool.",
     },
-    primaryCta: { vi: "Dat phong ngay", en: "Book now", href: "/#lien-he" },
+    primaryCta: { vi: "Đặt phòng ngay", en: "Book now", href: "/reservation" },
     secondaryCta: { vi: "Kham pha hang phong", en: "Explore rooms", href: "/#phong" },
   },
 
@@ -141,6 +147,10 @@ export const DEFAULT_SITE_CONTENT = {
     subtitleEn: "Bliss Hotel connects directly to our partner booking engine. You can continue your reservation here.",
     link: "",
     script: "",
+    scriptVi: "",
+    scriptEn: "",
+    searchScriptVi: "",
+    searchScriptEn: "",
   },
 
   rooms: {

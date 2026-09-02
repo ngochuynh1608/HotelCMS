@@ -10,7 +10,8 @@ export default function AdminLogin() {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const [key, setKey] = useState("");
+  const [username, setUsername] = useState("admin");
+  const [password, setPassword] = useState("");
   const [err, setErr] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -26,13 +27,13 @@ export default function AdminLogin() {
       const r = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ key: key.trim() }),
+        body: JSON.stringify({ username: username.trim(), password: password.trim() }),
       });
+      const j = await r.json().catch(() => ({}));
       if (!r.ok) {
-        const j = await r.json().catch(() => ({}));
         throw new Error(j.error || "Đăng nhập thất bại");
       }
-      setAdminSession(key.trim());
+      setAdminSession(j.token || password.trim());
       const to = location.state?.from?.pathname || "/admin";
       navigate(to, { replace: true });
     } catch (e) {
@@ -49,13 +50,24 @@ export default function AdminLogin() {
         <p className="admin-login-lead">Đăng nhập để chỉnh sửa nội dung website.</p>
         <form onSubmit={handleSubmit}>
           <label className="admin-field">
-            <span className="admin-field-label">Mat khau / Admin key</span>
+            <span className="admin-field-label">Tên đăng nhập</span>
+            <input
+              type="text"
+              autoComplete="username"
+              placeholder="admin"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </label>
+          <label className="admin-field">
+            <span className="admin-field-label">Mật khẩu</span>
             <input
               type="password"
               autoComplete="current-password"
-              placeholder="Nhap key"
-              value={key}
-              onChange={(e) => setKey(e.target.value)}
+              placeholder="Nhập mật khẩu"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </label>

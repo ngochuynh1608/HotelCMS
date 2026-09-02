@@ -20,7 +20,7 @@ export function AdminDraftProvider() {
   }, [content, loading]);
 
   const save = useCallback(async () => {
-    const key = getAdminKey() || "dev-change-me";
+    const key = getAdminKey();
     setSaving(true);
     setErr(null);
     setMsg(null);

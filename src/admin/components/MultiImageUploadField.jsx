@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Field } from "./Field.jsx";
-import { getAdminKey } from "../session.js";
+import { uploadHotelFile } from "../uploadFile.js";
 
 /**
  * @param {{
@@ -29,35 +29,7 @@ export function MultiImageUploadField({
   const rep = representative || "";
 
   async function uploadToApi(file) {
-    const candidates = ["/api/upload"];
-    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
-      candidates.push("http://localhost:8787/api/upload");
-    }
-
-    let lastErr = null;
-    for (const endpoint of candidates) {
-      const fd = new FormData();
-      fd.append("file", file);
-      try {
-        const r = await fetch(endpoint, {
-          method: "POST",
-          headers: { "X-Admin-Key": getAdminKey() || "dev-change-me" },
-          body: fd,
-        });
-        const j = await r.json().catch(() => ({}));
-        if (!r.ok) {
-          if (r.status === 502) {
-            lastErr = new Error("Upload 502");
-            continue;
-          }
-          throw new Error(j.error || `Upload ${r.status}`);
-        }
-        return j;
-      } catch (err) {
-        lastErr = err;
-      }
-    }
-    throw lastErr || new Error("Upload thất bại");
+    return uploadHotelFile(file);
   }
 
   async function uploadFiles(e) {
@@ -82,7 +54,11 @@ export function MultiImageUploadField({
       }
     } catch (err) {
       const msg = String(err.message || err);
-      setLocalErr(msg.includes("502") ? "Upload lỗi 502. Kiểm tra server Bun hoặc chạy lại dev:full." : msg);
+      setLocalErr(
+        msg.includes("502")
+          ? "Upload lỗi 502. Chạy bun server (npm run dev:full) hoặc kiểm tra Vercel Blob / DATABASE_URL."
+          : msg
+      );
     } finally {
       setBusy(false);
       e.target.value = "";

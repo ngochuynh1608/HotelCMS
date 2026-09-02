@@ -25,7 +25,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-# User uploads (keep folder in repo)
-public/uploads/*
-!public/uploads/.gitkeep

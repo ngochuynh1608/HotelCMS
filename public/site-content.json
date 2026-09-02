@@ -253,7 +253,9 @@
             "src": "/photos/gsp-34.jpg",
             "alt": "Góc ngồi ban công"
           }
-        ]
+        ],
+        "area": "35",
+        "beds": "1"
       },
       {
         "name": "Deluxe Double Room Balcony",
@@ -314,11 +316,12 @@
             "src": "/photos/gsp-17.jpg",
             "alt": "Không gian phòng"
           }
-        ]
+        ],
+        "beds": "1"
       },
       {
         "name": "Signature Suite Balcony",
-        "desc": "40m2 , 1 King bed",
+        "desc": "",
         "price": {
           "vi": ""
         },
@@ -384,7 +387,7 @@
           "Shower"
         ],
         "area": "50",
-        "beds": ""
+        "beds": "1"
       }
     ],
     "roomAmenityLibrary": [],
@@ -612,7 +615,7 @@
       }
     ]
   },
-  "brandLogo": "/uploads/1788351593702-oq9aws3r.png",
+  "brandLogo": "/uploads/1788355924764-8b2pncha.jpg",
   "aboutPage": {
     "heroTitle": "Grand Sunrise Palace Hội An",
     "heroSubtitle": "Grand Sunrise Palace Hoi An",
